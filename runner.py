@@ -16,8 +16,8 @@ def fetch_data(sheet_url: str):
         st.error(f"Error fetching data: {e}")
         return pd.DataFrame()
 
-# --- Google Sheet CSV URL ---
-sheet_url = "https://docs.google.com/spreadsheets/d/1D5LAjqr0gzxbFyEfGvRaI8FGOx-UTZOFuR2JvDjV4bI/export?format=csv"
+# --- Updated Google Sheet CSV URL ---
+sheet_url = "https://docs.google.com/spreadsheets/d/1g3Esmr1-Z5jt5_mqOv9-f9fvyFezgT_2Z-8G7w5ChSU/export?format=csv"
 
 # Fetch data from the Google Sheet
 df = fetch_data(sheet_url)
