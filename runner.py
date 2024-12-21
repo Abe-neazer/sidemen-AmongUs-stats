@@ -86,7 +86,9 @@ if not df.empty:
     # Tab 1: Overview
     with tab1:
         st.header("Overview")
-        st.dataframe(df)
+        st.dataframe(df, column_config={
+            "Name": st.column_config.Column(pinned=True),
+        },)     
 
         # Stats Summary
         st.subheader("Interactive Stats Summary")
