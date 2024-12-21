@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-import time
 
 # --- Page Configurations ---
 st.set_page_config(
@@ -10,18 +9,20 @@ st.set_page_config(
 )
 
 # --- Function to Fetch Data from Google Sheet ---
-
-@st.cache_data
 def fetch_data(sheet_url: str):
-    return pd.read_csv(sheet_url)
+    try:
+        return pd.read_csv(sheet_url)
+    except Exception as e:
+        st.error(f"Error fetching data: {e}")
+        return pd.DataFrame()
 
-# Use the new exportable link
+# --- Google Sheet CSV URL ---
 sheet_url = "https://docs.google.com/spreadsheets/d/1D5LAjqr0gzxbFyEfGvRaI8FGOx-UTZOFuR2JvDjV4bI/export?format=csv"
+
+# Fetch data from the Google Sheet
 df = fetch_data(sheet_url)
 
-
 # --- Helper Function to Convert Data to CSV ---
-@st.cache_data
 def convert_df_to_csv(data):
     return data.to_csv(index=False).encode('utf-8')
 
@@ -146,9 +147,7 @@ if not df.empty:
 else:
     st.warning("No data available. Please check the Google Sheet URL or try again later.")
 
-# --- Footer: Add Refreshing Placeholder ---
-placeholder = st.empty()
-for seconds in range(5, 0, -1):
-    placeholder.write(f"Refreshing in {seconds}s...")
-    time.sleep(1)
-placeholder.empty()
+# --- Manual Refresh Button ---
+if st.button("Refresh Data"):
+    df = fetch_data(sheet_url)
+    st.experimental_rerun()
