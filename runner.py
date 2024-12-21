@@ -10,15 +10,15 @@ st.set_page_config(
 )
 
 # --- Function to Fetch Data from Google Sheet ---
+
 @st.cache_data
 def fetch_data(sheet_url: str):
     return pd.read_csv(sheet_url)
 
-# --- Google Sheet URL ---
-ssheet_url = "https://docs.google.com/spreadsheets/d/1D5LAjqr0gzxbFyEfGvRaI8FGOx-UTZOFuR2JvDjV4bI/export?format=csv"
-
-# --- Load Data ---
+# Use the new exportable link
+sheet_url = "https://docs.google.com/spreadsheets/d/1D5LAjqr0gzxbFyEfGvRaI8FGOx-UTZOFuR2JvDjV4bI/export?format=csv"
 df = fetch_data(sheet_url)
+
 
 # --- Helper Function to Convert Data to CSV ---
 @st.cache_data
