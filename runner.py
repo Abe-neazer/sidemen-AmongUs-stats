@@ -15,7 +15,7 @@ def fetch_data(sheet_url: str):
     return pd.read_csv(sheet_url)
 
 # --- Google Sheet URL ---
-sheet_url = "https://docs.google.com/spreadsheets/d/1g3Esmr1-Z5jt5_mqOv9-f9fvyFezgT_2Z-8G7w5ChSU/export?format=csv"
+ssheet_url = "https://docs.google.com/spreadsheets/d/1D5LAjqr0gzxbFyEfGvRaI8FGOx-UTZOFuR2JvDjV4bI/export?format=csv"
 
 # --- Load Data ---
 df = fetch_data(sheet_url)
