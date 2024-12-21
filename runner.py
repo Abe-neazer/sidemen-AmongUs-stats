@@ -150,4 +150,4 @@ else:
 # --- Manual Refresh Button ---
 if st.button("Refresh Data"):
     df = fetch_data(sheet_url)
-    st.experimental_rerun()
+    st.write("Data refreshed successfully!")
